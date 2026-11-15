@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090b10">
+<title>NEXA // MINI RACING</title>
+<style>
+:root{--bg:#090b10;--panel:#11151d;--line:#252c38;--text:#eef2f8;--muted:#8993a3;--accent:#a78bfa;--cyan:#67e8f9}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#171827 0%,var(--bg) 55%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;display:flex;justify-content:center;padding:24px 14px calc(24px + env(safe-area-inset-bottom))}
+main{width:min(100%,560px)}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.brand{font-size:12px;letter-spacing:.2em;font-weight:800}.brand span{color:var(--accent)}
+.back{color:var(--muted);font-size:12px;text-decoration:none;border:1px solid var(--line);padding:8px 11px;border-radius:9px}
+h1{font-size:clamp(26px,7vw,38px);letter-spacing:-.055em;margin:0 0 5px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 20px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+.stat small{display:block;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.stat strong{font-size:20px;font-variant-numeric:tabular-nums}
+.game-shell{position:relative;border:1px solid #303746;background:#080b10;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px #0008}
+canvas{display:block;width:100%;height:auto;aspect-ratio:420/620;touch-action:none}
+.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;background:#070910b8;backdrop-filter:blur(5px)}
+.overlay.hidden{display:none}
+.dialog{width:min(100%,290px);text-align:center;background:#11151df2;border:1px solid #303746;border-radius:16px;padding:23px 18px}
+.dialog h2{font-size:23px;letter-spacing:-.04em;margin:0 0 8px}
+.dialog p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 17px}
+button{font:inherit;cursor:pointer}
+.primary{border:0;background:var(--accent);color:#100d1c;font-weight:800;border-radius:10px;padding:12px 20px;width:100%}
+.secondary{border:1px solid var(--line);background:#171c26;color:var(--text);border-radius:10px;padding:10px 14px}
+.actions{display:flex;gap:9px;margin-top:12px}.actions button{flex:1}
+.hint{color:var(--muted);font-size:11px;text-align:center;margin:12px 0 0;line-height:1.6}
+.mobile-controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.control{height:58px;border:1px solid var(--line);border-radius:13px;background:var(--panel);color:var(--text);font-size:22px;font-weight:700;touch-action:none;user-select:none;-webkit-user-select:none}
+.control:active{border-color:var(--accent);background:#211c32}
+.footer{color:#626c7b;font-size:10px;letter-spacing:.12em;text-align:center;margin-top:20px}
+@media(min-width:700px){.mobile-controls{max-width:320px;margin-left:auto;margin-right:auto}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="brand">NEXA <span>///</span> ARCADE</div>
+  <a class="back" href="../index.html">← PORTFOLIO</a>
+</header>
+<h1>Mini Racing<span style="color:var(--accent)">.</span></h1>
+<p class="sub">Stay sharp. Avoid traffic. Beat your best.</p>
+
+<section class="stats" aria-label="Game statistics">
+  <div class="stat"><small>Score</small><strong id="score">0000</strong></div>
+  <div class="stat"><small>Best</small><strong id="best">0000</strong></div>
+  <div class="stat"><small>Speed</small><strong id="speed">1.0x</strong></div>
+</section>
+
+<div class="game-shell">
+  <canvas id="game" width="420" height="620" aria-label="Top-down mini racing game"></canvas>
+  <div class="overlay" id="overlay">
+    <div class="dialog">
+      <h2 id="overlayTitle">Ready to race?</h2>
+      <p id="overlayText">Move left and right to dodge traffic. The longer you survive, the faster it gets.</p>
+      <button class="primary" id="startBtn">START RACE</button>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <button class="secondary" id="pauseBtn">Ⅱ Pause</button>
+  <button class="secondary" id="restartBtn">↻ Restart</button>
+</div>
+<div class="mobile-controls">
+  <button class="control" id="leftBtn" aria-label="Move left">←</button>
+  <button class="control" id="rightBtn" aria-label="Move right">→</button>
+</div>
+<p class="hint">Mobile: use the arrow controls · Desktop: use ← → or A / D<br>Press SPACE to pause or resume.</p>
+<div class="footer">NEXA // MINI RACING · BUILT FOR THE WEB</div>
+</main>
+
+<script>
+(() => {
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const scoreEl = document.getElementById('score');
+  const bestEl = document.getElementById('best');
+  const speedEl = document.getElementById('speed');
+  const overlay = document.getElementById('overlay');
+  const overlayTitle = document.getElementById('overlayTitle');
+  const overlayText = document.getElementById('overlayText');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const restartBtn = document.getElementById('restartBtn');
+  const laneCenters = [105,210,315];
+  let best = Number(localStorage.getItem('nexaMiniRacingBest') || 0);
+  let score = 0, speed = 1, running = false, paused = false, gameOver = false;
+  let lastTime = 0, spawnTimer = 0, roadOffset = 0, traffic = [];
+  let left = false, right = false;
+  const player = {x:210,y:505,w:38,h:68,target:1};
+  bestEl.textContent = String(best).padStart(4,'0');
+
+  function roundedRect(x,y,w,h,r,color){
+    ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill();
+  }
+  function drawRoad(dt){
+    ctx.fillStyle='#111820';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#0b1016';ctx.fillRect(18,0,384,H);
+    ctx.fillStyle='#d0d6df';ctx.fillRect(18,0,4,H);ctx.fillRect(398,0,4,H);
+    roadOffset=(roadOffset+dt*speed*190)%74;
+    ctx.strokeStyle='#36404d';ctx.lineWidth=3;ctx.setLineDash([34,40]);
+    for(let x of [146,274]){
+      ctx.beginPath();ctx.lineDashOffset=-roadOffset;ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    // subtle roadside markers
+    for(let y=-20+(roadOffset%50);y<H;y+=50){
+      roundedRect(7,y,5,18,2,'#465160');roundedRect(408,y,5,18,2,'#465160');
+    }
+  }
+  function drawCar(x,y,w,h,color,isPlayer=false){
+    ctx.save();ctx.translate(x,y);
+    // soft shadow
+    ctx.fillStyle='#0009';ctx.beginPath();ctx.roundRect(-w/2+3,-h/2+5,w,h,9);ctx.fill();
+    roundedRect(-w/2,-h/2,w,h,9,color);
+    roundedRect(-w/2+5,-h/2+10,w-10,17,5,isPlayer?'#d8d5ff':'#dce8ef');
+    roundedRect(-w/2+6,-h/2+32,w-12,17,4,isPlayer?'#62568d':'#263341');
+    roundedRect(-w/2+5,h/2-19,w-10,11,4,'#1b2530');
+    roundedRect(-w/2-3,-h/2+10,5,12,2,'#e8f3ff');
+    roundedRect(w/2-2,-h/2+10,5,12,2,'#e8f3ff');
+    roundedRect(-w/2-3,h/2-17,5,9,2,'#fb6572');
+    roundedRect(w/2-2,h/2-17,5,9,2,'#fb6572');
+    if(isPlayer){ctx.fillStyle='#ffffff55';ctx.fillRect(-2,-h/2+8,4,h-16);}
+    ctx.restore();
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    drawRoad(0);
+    traffic.forEach(car=>drawCar(car.x,car.y,car.w,car.h,car.color));
+    drawCar(player.x,player.y,player.w,player.h,'#9b8af5',true);
+    // faint vignette
+    const grad=ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0,'#0003');grad.addColorStop(.5,'transparent');grad.addColorStop(1,'#0004');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+  }
+  function reset(){
+    score=0;speed=1;traffic=[];spawnTimer=0;roadOffset=0;
+    player.x=laneCenters[1];player.target=1;
+    scoreEl.textContent='0000';speedEl.textContent='1.0x';
+    gameOver=false;paused=false;running=true;lastTime=0;
+    overlay.classList.add('hidden');pauseBtn.textContent='Ⅱ Pause';
+    draw();
+    requestAnimationFrame(loop);
+  }
+  function spawnCar(){
+    const lane=Math.floor(Math.random()*3);
+    const colors=['#e07b67','#5d9bd6','#d1a85c','#68a99a','#b77bd8'];
+    traffic.push({x:laneCenters[lane],y:-55,w:38,h:68,color:colors[Math.floor(Math.random()*colors.length)],passed:false});
+  }
+  function collide(a,b){
+    return Math.abs(a.x-b.x)<(a.w+b.w)/2-7 && Math.abs(a.y-b.y)<(a.h+b.h)/2-9;
+  }
+  function endGame(){
+    running=false;gameOver=true;
+    if(score>best){best=score;localStorage.setItem('nexaMiniRacingBest',String(best));bestEl.textContent=String(best).padStart(4,'0');}
+    overlayTitle.textContent='Race over';
+    overlayText.textContent=`You scored ${score}. ${score>=best?'New personal best!':'One more run?'} Avoid traffic and see how far you can go.`;
+    startBtn.textContent='RACE AGAIN';overlay.classList.remove('hidden');
+  }
+  function loop(time){
+    if(!running)return;
+    if(!lastTime)lastTime=time;
+    const dt=Math.min((time-lastTime)/1000,.035);lastTime=time;
+    if(!paused){
+      speed=Math.min(2.7,1+score/500);
+      spawnTimer+=dt;
+      if(spawnTimer>Math.max(.48,1.12-score/1300)){spawnCar();spawnTimer=0;}
+      traffic.forEach(car=>car.y+=dt*250*speed);
+      traffic=traffic.filter(car=>car.y<H+80);
+      for(const car of traffic){
+        if(collide(player,car)){endGame();return;}
+        if(!car.passed && car.y>player.y+player.h/2){car.passed=true;score+=10;scoreEl.textContent=String(score).padStart(4,'0');}
+      }
+      if(left)player.x=Math.max(laneCenters[0],player.x-dt*310);
+      if(right)player.x=Math.min(laneCenters[2],player.x+dt*310);
+      roadOffset=(roadOffset+dt*speed*190)%74;
+      draw();
+      speedEl.textContent=speed.toFixed(1)+'x';
+    }
+    if(running && !paused) requestAnimationFrame(loop);
+  }
+  function togglePause(){
+    if(!running)return;
+    paused=!paused;pauseBtn.textContent=paused?'▶ Resume':'Ⅱ Pause';
+    if(paused){
+      overlayTitle.textContent='Paused';overlayText.textContent='Take a breather. Your race is waiting.';
+      startBtn.textContent='RESUME';overlay.classList.remove('hidden');
+    }else{overlay.classList.add('hidden');lastTime=0;requestAnimationFrame(loop);}
+  }
+  startBtn.addEventListener('click',()=>{if(paused&&!gameOver){paused=false;overlay.classList.add('hidden');pauseBtn.textContent='Ⅱ Pause';lastTime=0;requestAnimationFrame(loop);}else reset();});
+  pauseBtn.addEventListener('click',togglePause);
+  restartBtn.addEventListener('click',reset);
+  function keyDown(e){
+    if(['ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();
+    if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')left=true;
+    if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')right=true;
+    if(e.code==='Space'&&!e.repeat)togglePause();
+  }
+  function keyUp(e){
+    if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')left=false;
+    if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')right=false;
+  }
+  window.addEventListener('keydown',keyDown);window.addEventListener('keyup',keyUp);
+  window.addEventListener('blur',()=>{left=false;right=false;if(running&&!paused)togglePause();});
+  function bindHold(id,which){
+    const el=document.getElementById(id);
+    const on= e=>{e.preventDefault();if(which==='left')left=true;else right=true;};
+    const off=e=>{e.preventDefault();if(which==='left')left=false;else right=false;};
+    el.addEventListener('pointerdown',on);el.addEventListener('pointerup',off);
+    el.addEventListener('pointercancel',off);el.addEventListener('pointerleave',off);
+  }
+  bindHold('leftBtn','left');bindHold('rightBtn','right');
+  draw();
+})();
+</script>
+</body>
+</html>
