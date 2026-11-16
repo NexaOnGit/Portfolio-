@@ -629,27 +629,106 @@ body {
 
     <!-- Audio Player Play/Pause Script -->
     <script>
-        const audio = document.getElementById('bg-audio');
-        const playBtn = document.getElementById('play-btn');
-        const statusText = document.getElementById('audio-status');
+        
+const audio = document.getElementById('bg-audio');
+const playBtn = document.getElementById('play-btn');
+const statusText = document.getElementById('audio-status');
 
-        playBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i> PAUSE AUDIO';
-                    statusText.innerText = 'PLAYING';
-                    statusText.style.color = '#fff';
-                }).catch(e => {
-                    console.log("Playback error:", e);
-                });
-            } else {
-                audio.pause();
-                playBtn.innerHTML = '<i class="fas fa-play"></i> START AUDIO';
-                statusText.innerText = 'PLAYING';
-                statusText.innerText = 'STANDBY';
-                statusText.style.color = 'var(--text-dim)';
+const visualizerBars = document.querySelectorAll(
+    '#music-visualizer span'
+);
+
+let audioContext;
+let analyser;
+let source;
+let frequencyData;
+let animationFrame;
+
+function setupVisualizer() {
+    if (audioContext) return;
+
+    audioContext = new (
+        window.AudioContext || window.webkitAudioContext
+    )();
+
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 64;
+    analyser.smoothingTimeConstant = 0.8;
+
+    source = audioContext.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    frequencyData = new Uint8Array(analyser.frequencyBinCount);
+}
+
+function animateVisualizer() {
+    if (!analyser || audio.paused) return;
+
+    analyser.getByteFrequencyData(frequencyData);
+
+    visualizerBars.forEach((bar, index) => {
+        const value = frequencyData[
+            index % frequencyData.length
+        ];
+
+        const height = 3 + (value / 255) * 48;
+
+        bar.style.height = height + 'px';
+    });
+
+    animationFrame = requestAnimationFrame(
+        animateVisualizer
+    );
+}
+
+function stopVisualizer() {
+    cancelAnimationFrame(animationFrame);
+
+    visualizerBars.forEach(bar => {
+        bar.style.height = '3px';
+    });
+}
+
+playBtn.addEventListener('click', async () => {
+    if (audio.paused) {
+        try {
+            setupVisualizer();
+
+            if (audioContext.state === 'suspended') {
+                await audioContext.resume();
             }
-        });
+
+            await audio.play();
+
+            playBtn.innerHTML =
+                '<i class="fas fa-pause"></i> PAUSE AUDIO';
+
+            statusText.innerText = 'PLAYING';
+            statusText.style.color = '#c49a5a';
+
+            stopVisualizer();
+            animateVisualizer();
+
+        } catch (error) {
+            console.error('Audio error:', error);
+            statusText.innerText = 'AUDIO ERROR';
+        }
+
+    } else {
+        audio.pause();
+
+        playBtn.innerHTML =
+            '<i class="fas fa-play"></i> START AUDIO';
+
+        statusText.innerText = 'STANDBY';
+        statusText.style.color = 'var(--text-dim)';
+
+        stopVisualizer();
+    }
+});
+
     </script>
 </body>
 </html>
