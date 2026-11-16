@@ -253,6 +253,40 @@ body {
             margin-top: 15px;
         }
 
+/* NEXA MUSIC VISUALIZER */
+.music-visualizer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 58px;
+    margin-top: 18px;
+    padding: 8px 12px;
+    background: rgba(196, 154, 90, 0.06);
+    border: 1px solid rgba(196, 154, 90, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.music-visualizer span {
+    display: block;
+    width: 4px;
+    height: 3px;
+    min-height: 3px;
+    background: #c49a5a;
+    border-radius: 5px;
+    box-shadow: 0 0 7px rgba(196, 154, 90, 0.4);
+    transition: height 0.08s linear;
+}
+
+.visualizer-label {
+    margin-top: 8px;
+    color: #c49a5a;
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+}
+        
         /* Cards Layout */
         .grid-layout {
             display: grid;
