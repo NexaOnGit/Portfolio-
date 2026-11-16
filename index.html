@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -28,25 +29,23 @@
             user-select: none;
         }
 
-        
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: var(--font-sub);
-    font-size: 16px;
-    overflow-x: hidden;
-    background-image:
-        linear-gradient(
-            rgba(10, 10, 10, 0.65),
-            rgba(10, 10, 10, 0.75)
-        ),
-        url("./background.gif");
-    background-size: cover, cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sub);
+            font-size: 16px;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(
+                    rgba(10, 10, 10, 0.65),
+                    rgba(10, 10, 10, 0.75)
+                ),
+                url("./background.gif");
+            background-size: cover, cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
         /* Navigation Header */
         nav {
@@ -107,50 +106,48 @@ body {
         }
 
         /* Minimal Button Styling */
-        
-.mono-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 12px 24px;
-    font-family: var(--font-head);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #17100a;
-    background: #c49a5a;
-    text-decoration: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: 1px solid #c49a5a;
-    transition: 0.3s ease;
-}
+        .mono-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #17100a;
+            background: #c49a5a;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid #c49a5a;
+            transition: 0.3s ease;
+        }
 
-.mono-btn:hover {
-    background: #e0bd82;
-    border-color: #e0bd82;
-    color: #17100a;
-    box-shadow: 0 0 18px rgba(196, 154, 90, 0.3);
-}
+        .mono-btn:hover {
+            background: #e0bd82;
+            border-color: #e0bd82;
+            color: #17100a;
+            box-shadow: 0 0 18px rgba(196, 154, 90, 0.3);
+        }
 
-.mono-btn-outline {
-    color: #d8b77f;
-    background: rgba(196, 154, 90, 0.08);
-    border: 1px solid rgba(196, 154, 90, 0.55);
-}
+        .mono-btn-outline {
+            color: #d8b77f;
+            background: rgba(196, 154, 90, 0.08);
+            border: 1px solid rgba(196, 154, 90, 0.55);
+        }
 
-.mono-btn-outline:hover {
-    background: #c49a5a;
-    color: #17100a;
-    border-color: #c49a5a;
-}
+        .mono-btn-outline:hover {
+            background: #c49a5a;
+            color: #17100a;
+            border-color: #c49a5a;
+        }
 
-.mono-btn.sm {
-    padding: 8px 14px;
-    font-size: 0.75rem;
-}
-
+        .mono-btn.sm {
+            padding: 8px 14px;
+            font-size: 0.75rem;
+        }
 
         /* Container & Grid Sections */
         .section-container {
@@ -253,40 +250,40 @@ body {
             margin-top: 15px;
         }
 
-/* NEXA MUSIC VISUALIZER */
-.music-visualizer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    height: 58px;
-    margin-top: 18px;
-    padding: 8px 12px;
-    background: rgba(196, 154, 90, 0.06);
-    border: 1px solid rgba(196, 154, 90, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
-}
+        /* NEXA MUSIC VISUALIZER */
+        .music-visualizer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 58px;
+            margin-top: 18px;
+            padding: 8px 12px;
+            background: rgba(196, 154, 90, 0.06);
+            border: 1px solid rgba(196, 154, 90, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
 
-.music-visualizer span {
-    display: block;
-    width: 4px;
-    height: 3px;
-    min-height: 3px;
-    background: #c49a5a;
-    border-radius: 5px;
-    box-shadow: 0 0 7px rgba(196, 154, 90, 0.4);
-    transition: height 0.08s linear;
-}
+        .music-visualizer span {
+            display: block;
+            width: 4px;
+            height: 3px;
+            min-height: 3px;
+            background: #c49a5a;
+            border-radius: 5px;
+            box-shadow: 0 0 7px rgba(196, 154, 90, 0.4);
+            transition: height 0.08s linear;
+        }
 
-.visualizer-label {
-    margin-top: 8px;
-    color: #c49a5a;
-    font-family: var(--font-head);
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-}
-        
+        .visualizer-label {
+            margin-top: 8px;
+            color: #c49a5a;
+            font-family: var(--font-head);
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+        }
+
         /* Cards Layout */
         .grid-layout {
             display: grid;
@@ -386,18 +383,18 @@ body {
             SRIJAN <span>HALDER</span>
         </a>
         <ul class="nav-links">
-    <li><a href="#home">01. HOME</a></li>
-    <li><a href="#about">02. ABOUT</a></li>
-    <li><a href="#skills">03. SKILLS</a></li>
-    <li><a href="#gaming">04. GAMING</a></li>
-    <li><a href="#projects">05. PROJECTS</a></li>
-    <li><a href="#socials">06. CONTACT</a></li>
+            <li><a href="#home">01. HOME</a></li>
+            <li><a href="#about">02. ABOUT</a></li>
+            <li><a href="#skills">03. SKILLS</a></li>
+            <li><a href="#gaming">04. GAMING</a></li>
+            <li><a href="#projects">05. PROJECTS</a></li>
+            <li><a href="#socials">06. CONTACT</a></li>
         </ul>
     </nav>
 
     <!-- Main Container -->
     <div class="section-container">
-        
+
         <!-- Hero Section -->
         <section id="home">
             <!-- Profile Picture Element -->
@@ -435,6 +432,21 @@ body {
                     Your browser does not support the audio element.
                 </audio>
 
+                <!-- NEXA MUSIC VISUALIZER -->
+                <div class="music-visualizer" id="music-visualizer">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+
+                <div class="visualizer-label">
+                    <i class="fas fa-wave-square"></i>
+                    NEXA AUDIO FREQUENCY VISUALIZER
+                </div>
+
                 <div class="audio-controls">
                     <button id="play-btn" class="mono-btn sm">
                         <i class="fas fa-play"></i> START AUDIO
@@ -444,26 +456,26 @@ body {
             </div>
         </section>
 
-<!-- Mini Racing Game Section -->
-<section id="play" style="margin-top: 80px;">
-    <h2 class="section-title">05. PLAY ZONE</h2>
+        <!-- Mini Racing Game Section -->
+        <section id="play" style="margin-top: 80px;">
+            <h2 class="section-title">05. PLAY ZONE</h2>
 
-    <div class="mono-card">
-        <h3><i class="fas fa-gamepad"></i> NEXA MINI RACING</h3>
-        <p>Play my custom racing game directly inside my portfolio.</p>
+            <div class="mono-card">
+                <h3><i class="fas fa-gamepad"></i> NEXA MINI RACING</h3>
+                <p>Play my custom racing game directly inside my portfolio.</p>
 
-        <iframe
-            src="./games/nexa-mini-racing.html"
-            title="NEXA Mini Racing"
-            width="100%"
-            height="700"
-            loading="lazy"
-            allowfullscreen
-            style="border: 1px solid #c49a5a; border-radius: 6px; background: #090b10; display: block;">
-        </iframe>
-    </div>
-</section>
-        
+                <iframe
+                    src="./games/nexa-mini-racing.html"
+                    title="NEXA Mini Racing"
+                    width="100%"
+                    height="700"
+                    loading="lazy"
+                    allowfullscreen
+                    style="border: 1px solid #c49a5a; border-radius: 6px; background: #090b10; display: block;">
+                </iframe>
+            </div>
+        </section>
+
         <!-- About Section -->
         <section id="about" style="margin-top: 80px;">
             <h2 class="section-title">02. OVERVIEW</h2>
@@ -517,124 +529,78 @@ body {
             </div>
         </section>
 
-<!-- VELORA X LIVE PROJECT SECTION -->
-<section id="projects" style="margin-top: 80px;">
+        <!-- VELORA X LIVE PROJECT SECTION -->
+        <section id="projects" style="margin-top: 80px;">
 
-    <h2 class="section-title">05. LIVE PROJECTS</h2>
+            <h2 class="section-title">05. LIVE PROJECTS</h2>
 
-    <div class="mono-card">
+            <div class="mono-card">
 
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
 
-            <h3>
-                <i class="fas fa-robot"></i> VELORA X
-            </h3>
+                    <h3>
+                        <i class="fas fa-robot"></i> VELORA X
+                    </h3>
 
-            <span class="mono-tag">
-                ● DEVELOPMENT ACTIVE
-            </span>
+                    <span class="mono-tag">
+                        ● DEVELOPMENT ACTIVE
+                    </span>
 
-        </div>
+                </div>
 
-        <p>
-            VELORA X is a multipurpose Discord bot developed by NEXA.
-            Built to bring moderation, utilities, economy and
-            community features into one place.
-        </p>
+                <p>
+                    VELORA X is a multipurpose Discord bot developed by NEXA.
+                    Built to bring moderation, utilities, economy and
+                    community features into one place.
+                </p>
 
-        <div class="tag-container">
-            <span class="mono-tag">Python</span>
-            <span class="mono-tag">Discord.py</span>
-            <span class="mono-tag">SQLite</span>
-            <span class="mono-tag">JSON</span>
-        </div>
+                <div class="tag-container">
+                    <span class="mono-tag">Python</span>
+                    <span class="mono-tag">Discord.py</span>
+                    <span class="mono-tag">SQLite</span>
+                    <span class="mono-tag">JSON</span>
+                </div>
 
-        <div style="margin-top:25px; border-top:1px solid var(--border-color); padding-top:20px;">
+                <div style="margin-top:25px; border-top:1px solid var(--border-color); padding-top:20px;">
 
-            <p style="color:#c49a5a; font-family:var(--font-head);">
-                PROJECT ACTIVITY
-            </p>
+                    <p style="color:#c49a5a; font-family:var(--font-head);">
+                        PROJECT ACTIVITY
+                    </p>
 
-            <p>Building & Improving VELORA X</p>
+                    <p>Building & Improving VELORA X</p>
 
-            <div style="height:6px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
-                <div style="width:60%; height:100%; background:#c49a5a;"></div>
+                    <div style="height:6px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+                        <div style="width:60%; height:100%; background:#c49a5a;"></div>
+                    </div>
+
+                    <p style="margin-top:18px;">
+                        <strong style="color:#c49a5a;">STARTED:</strong>
+                        10 NOV 2026
+                    </p>
+
+                    <p>
+                        <strong style="color:#c49a5a;">STATUS:</strong>
+                        Ongoing Development
+                    </p>
+
+                    <p>
+                        <strong style="color:#c49a5a;">DEVELOPED BY:</strong>
+                        NEXA / SRIJAN
+                    </p>
+
+                </div>
+
+                <div style="margin-top:20px; font-family:var(--font-head); font-size:0.75rem; color:var(--text-dim);">
+                    [ PROJECT STATUS: IN DEVELOPMENT ]
+                </div>
+
             </div>
+        </section>
 
-            <p style="margin-top:18px;">
-                <strong style="color:#c49a5a;">STARTED:</strong>
-                10 NOV 2026
-            </p>
-
-            <p>
-                <strong style="color:#c49a5a;">STATUS:</strong>
-                Ongoing Development
-            </p>
-
-            <p>
-                <strong style="color:#c49a5a;">DEVELOPED BY:</strong>
-                NEXA / SRIJAN
-            </p>
-
-        </div>
-
-        <div style="margin-top:20px; font-family:var(--font-head); font-size:0.75rem; color:var(--text-dim);">
-            [ PROJECT STATUS: IN DEVELOPMENT ]
-        </div>
-
-    </div>
-</section>
-        
         <!-- Social Media / Contact Section -->
         <section id="socials" style="margin-top: 80px;">
             <h2 class="section-title">05. DIRECT CONTACT</h2>
             <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 0.9rem;">Reach out directly through social channels or send an email transmission.</p>
             <div class="social-grid">
                 <!-- Discord direct link with ID -->
-                <a href="https://discord.com/users/1457845956505764003" target="_blank" class="social-card">
-                    <i class="fab fa-discord"></i>
-                    <div>
-                        <div style="font-weight: 500; font-family: var(--font-head); font-size: 0.9rem;">DISCORD</div>
-                        <div style="font-size: 0.75rem; color: var(--text-dim);">u05b { rarest 4 letter username }</div>
-                    </div>
-                </a>
-
-                <!-- Email -->
-                <a href="mailto:haldersrijan90@gmail.com" class="social-card">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <div style="font-weight: 500; font-family: var(--font-head); font-size: 0.9rem;">EMAIL</div>
-                        <div style="font-size: 0.75rem; color: var(--text-dim);">haldersrijan90@...</div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- Audio Player Play/Pause Script -->
-    <script>
-        const audio = document.getElementById('bg-audio');
-        const playBtn = document.getElementById('play-btn');
-        const statusText = document.getElementById('audio-status');
-
-        playBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i> PAUSE AUDIO';
-                    statusText.innerText = 'PLAYING';
-                    statusText.style.color = '#fff';
-                }).catch(e => {
-                    console.log("Playback error:", e);
-                });
-            } else {
-                audio.pause();
-                playBtn.innerHTML = '<i class="fas fa-play"></i> START AUDIO';
-                statusText.innerText = 'PLAYING';
-                statusText.innerText = 'STANDBY';
-                statusText.style.color = 'var(--text-dim)';
-            }
-        });
-    </script>
-</body>
-</html>
+                <a href="https://disco
