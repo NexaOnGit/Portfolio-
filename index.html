@@ -107,45 +107,50 @@ body {
         }
 
         /* Minimal Button Styling */
-        .mono-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 24px;
-            font-family: var(--font-head);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #000;
-            background: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: 1px solid #fff;
-            transition: 0.2s ease;
-        }
+        
+.mono-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #17100a;
+    background: #c49a5a;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid #c49a5a;
+    transition: 0.3s ease;
+}
 
-        .mono-btn:hover {
-            background: transparent;
-            color: #fff;
-        }
+.mono-btn:hover {
+    background: #e0bd82;
+    border-color: #e0bd82;
+    color: #17100a;
+    box-shadow: 0 0 18px rgba(196, 154, 90, 0.3);
+}
 
-        .mono-btn-outline {
-            color: #fff;
-            background: transparent;
-            border: 1px solid var(--border-color);
-        }
+.mono-btn-outline {
+    color: #d8b77f;
+    background: rgba(196, 154, 90, 0.08);
+    border: 1px solid rgba(196, 154, 90, 0.55);
+}
 
-        .mono-btn-outline:hover {
-            border-color: #fff;
-            background: rgba(255, 255, 255, 0.05);
-        }
+.mono-btn-outline:hover {
+    background: #c49a5a;
+    color: #17100a;
+    border-color: #c49a5a;
+}
 
-        .mono-btn.sm {
-            padding: 8px 14px;
-            font-size: 0.75rem;
-        }
+.mono-btn.sm {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+}
+
 
         /* Container & Grid Sections */
         .section-container {
