@@ -1,23 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a0806">
-    <title>NEXA // Srijan Halder - Portfolio</title>
-
+    <title>NEXA // Srijan Halder - Minimalist Portfolio</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
+    
     <style>
         :root {
-            --bg-color: #0a0806;
-            --panel-bg: rgba(25, 19, 14, 0.78);
-            --border-color: rgba(220, 190, 150, 0.17);
+            --bg-color: #0a0a0a;
+            --panel-bg: rgba(20, 20, 20, 0.6);
+            --border-color: rgba(255, 255, 255, 0.15);
             --text-main: #e0e0e0;
-            --text-dim: #a39789;
-            --accent: #d6ad76;
+            --text-dim: #888888;
+            --accent: #ffffff;
             --font-head: 'Space Mono', monospace;
             --font-sub: 'Inter', sans-serif;
         }
@@ -29,47 +28,21 @@
             user-select: none;
         }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
-        }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: var(--font-sub);
             font-size: 16px;
             overflow-x: hidden;
-            position: relative;
-            isolation: isolate;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
         }
 
-        /* FULL PAGE ANIMATED GIF WALLPAPER */
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background:
-                linear-gradient(
-                    rgba(12, 9, 6, 0.62),
-                    rgba(12, 9, 6, 0.76)
-                ),
-                url("./background.gif");
-
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            pointer-events: none;
-        }
-
+        /* Navigation Header */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(17, 13, 9, 0.82);
+            top: 0; left: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             z-index: 100;
@@ -97,8 +70,8 @@
 
         .brand-tag {
             font-size: 0.65rem;
-            background: var(--accent);
-            color: #160f08;
+            background: #fff;
+            color: #000;
             padding: 2px 6px;
             font-weight: bold;
             letter-spacing: 1px;
@@ -108,7 +81,6 @@
             display: flex;
             gap: 25px;
             list-style: none;
-            align-items: center;
         }
 
         .nav-links a {
@@ -121,16 +93,10 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: #fff;
         }
 
-        .nav-project-link {
-            color: var(--accent) !important;
-            border: 1px solid rgba(214, 173, 118, 0.4);
-            padding: 8px 11px;
-            border-radius: 3px;
-        }
-
+        /* Minimal Button Styling */
         .mono-btn {
             display: inline-flex;
             align-items: center;
@@ -141,30 +107,29 @@
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 1px;
-            color: #160f08;
-            background: var(--accent);
+            color: #000;
+            background: #fff;
             text-decoration: none;
             text-transform: uppercase;
             cursor: pointer;
-            border: 1px solid var(--accent);
+            border: 1px solid #fff;
             transition: 0.2s ease;
         }
 
         .mono-btn:hover {
             background: transparent;
-            color: var(--accent);
+            color: #fff;
         }
 
         .mono-btn-outline {
-            color: #eee;
-            background: rgba(15, 12, 9, 0.25);
+            color: #fff;
+            background: transparent;
             border: 1px solid var(--border-color);
         }
 
         .mono-btn-outline:hover {
-            border-color: var(--accent);
-            background: rgba(214, 173, 118, 0.08);
-            color: var(--accent);
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .mono-btn.sm {
@@ -172,10 +137,11 @@
             font-size: 0.75rem;
         }
 
+        /* Container & Grid Sections */
         .section-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 120px 20px 80px;
+            padding: 120px 20px 80px 20px;
         }
 
         .section-title {
@@ -196,6 +162,7 @@
             background: var(--border-color);
         }
 
+        /* Hero Section & Avatar Styles */
         #home {
             min-height: 80vh;
             display: flex;
@@ -220,7 +187,7 @@
 
         .hero-avatar:hover {
             filter: grayscale(0%);
-            border-color: var(--accent);
+            border-color: #fff;
         }
 
         .hero-sys-info {
@@ -253,9 +220,9 @@
             line-height: 1.6;
         }
 
+        /* Audio HUD Component */
         .audio-hud {
             background: var(--panel-bg);
-            backdrop-filter: blur(8px);
             border: 1px solid var(--border-color);
             padding: 20px;
             border-radius: 6px;
@@ -269,59 +236,9 @@
             align-items: center;
             gap: 15px;
             margin-top: 15px;
-            flex-wrap: wrap;
         }
 
-        /* NEXA MINI RACING EMBED */
-
-        #nexa-arcade {
-            width: 100%;
-            margin-top: 65px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .arcade-heading {
-            margin-bottom: 20px;
-        }
-
-        .arcade-label {
-            font-family: var(--font-head);
-            color: var(--text-dim);
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-        }
-
-        .arcade-heading h2 {
-            font-family: var(--font-head);
-            color: #fff;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin: 12px 0;
-        }
-
-        .arcade-heading p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .arcade-frame {
-            width: 100%;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: #090909;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
-        }
-
-        .arcade-frame iframe {
-            display: block;
-            width: 100%;
-            height: 850px;
-            border: none;
-            background: #090909;
-        }
-
+        /* Cards Layout */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -330,7 +247,6 @@
 
         .mono-card {
             background: var(--panel-bg);
-            backdrop-filter: blur(8px);
             border: 1px solid var(--border-color);
             padding: 25px;
             border-radius: 6px;
@@ -338,7 +254,7 @@
         }
 
         .mono-card:hover {
-            border-color: rgba(214, 173, 118, 0.5);
+            border-color: rgba(255, 255, 255, 0.4);
             transform: translateY(-2px);
         }
 
@@ -365,14 +281,15 @@
 
         .mono-tag {
             border: 1px solid var(--border-color);
-            color: #e9d6bc;
+            color: #fff;
             padding: 4px 10px;
             font-size: 0.75rem;
             font-family: var(--font-head);
-            background: rgba(214, 173, 118, 0.06);
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 3px;
         }
 
+        /* Social Cards */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -385,7 +302,6 @@
             align-items: center;
             gap: 15px;
             background: var(--panel-bg);
-            backdrop-filter: blur(8px);
             border: 1px solid var(--border-color);
             padding: 18px;
             text-decoration: none;
@@ -395,334 +311,75 @@
         }
 
         .social-card:hover {
-            border-color: var(--accent);
-            background: rgba(214, 173, 118, 0.08);
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .social-card i {
             font-size: 1.4rem;
-            color: var(--accent);
-        }
-
-        /* NEXA PROJECT MONITOR */
-
-        #projects {
-            margin-top: 85px;
-            scroll-margin-top: 105px;
-        }
-
-        .project-monitor {
-            background: rgba(20, 15, 10, 0.86);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(214, 173, 118, 0.28);
-            border-radius: 7px;
-            overflow: hidden;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.3);
-        }
-
-        .pm-topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding: 17px 22px;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(214, 173, 118, 0.05);
-        }
-
-        .pm-terminal-label {
-            color: #c0a98d;
-            font-family: var(--font-head);
-            font-size: 0.68rem;
-            letter-spacing: 1.5px;
-        }
-
-        .pm-status {
-            color: #d8c49f;
-            border: 1px solid rgba(214, 173, 118, 0.45);
-            padding: 5px 9px;
-            font-family: var(--font-head);
-            font-size: 0.65rem;
-            letter-spacing: 1px;
-            border-radius: 3px;
-        }
-
-        .pm-body {
-            padding: 25px;
-        }
-
-        .pm-kicker {
-            color: var(--text-dim);
-            font-family: var(--font-head);
-            font-size: 0.68rem;
-            letter-spacing: 2px;
-        }
-
-        .pm-title-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin: 12px 0;
-        }
-
-        .pm-title {
             color: #fff;
-            font-family: var(--font-head);
-            font-size: clamp(1.8rem, 5vw, 2.7rem);
-            letter-spacing: -1px;
         }
 
-        .pm-icon {
-            width: 48px;
-            height: 48px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.35rem;
-            flex-shrink: 0;
-        }
-
-        .pm-description {
-            max-width: 650px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-
-        .pm-divider {
-            height: 1px;
-            background: var(--border-color);
-            margin: 23px 0;
-        }
-
-        .pm-section-label {
-            display: block;
-            color: #b09a7f;
-            font-family: var(--font-head);
-            font-size: 0.65rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 13px;
-        }
-
-        .pm-info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 23px 15px;
-        }
-
-        .pm-info-label {
-            display: block;
-            color: #a18c73;
-            font-family: var(--font-head);
-            font-size: 0.62rem;
-            letter-spacing: 1.3px;
-            margin-bottom: 8px;
-        }
-
-        .pm-info-value {
-            color: #e5d8c8;
-            font-size: 0.83rem;
-            line-height: 1.5;
-        }
-
-        .pm-activity {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            color: #e5d8c8;
-            font-size: 0.85rem;
-        }
-
-        .pm-activity-dot {
-            width: 7px;
-            height: 7px;
-            background: #c7b18e;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(199,177,142,0.5);
-        }
-
-        .pm-timeline {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 8px;
-        }
-
-        .pm-stage {
-            border-top: 2px solid #504437;
-            padding-top: 10px;
-            color: #94816b;
-            font-family: var(--font-head);
-            font-size: 0.62rem;
-            line-height: 1.6;
-        }
-
-        .pm-stage.current {
-            border-color: var(--accent);
-            color: #f0d9b8;
-        }
-
-        .pm-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            color: #a18c73;
-            font-family: var(--font-head);
-            font-size: 0.65rem;
-        }
-
-        .pm-credit {
-            color: #e9d6bc;
-            font-family: var(--font-head);
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-        }
-
-        .pm-project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 13px;
-            color: #e9d6bc;
-            text-decoration: none;
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-            font-family: var(--font-head);
-            font-size: 0.7rem;
-            transition: 0.2s;
-        }
-
-        .pm-project-link:hover {
-            background: rgba(214, 173, 118, 0.1);
-            border-color: var(--accent);
-        }
-
+        /* Mobile View Rules */
         @media (max-width: 768px) {
-            nav {
-                padding: 17px 4%;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 1.3rem;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .arcade-frame iframe {
-                height: 850px;
-            }
-
-            .pm-body {
-                padding: 19px;
-            }
-
-            body::before {
-                background-position: center center;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .pm-info-grid {
-                gap: 19px 10px;
-            }
-
-            .pm-timeline {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                row-gap: 17px;
-            }
-
-            .pm-topbar {
-                padding: 14px;
-            }
-
-            .pm-terminal-label {
-                font-size: 0.59rem;
-            }
-
-            .pm-footer {
-                align-items: flex-start;
-                flex-direction: column;
-            }
+            .nav-links { display: none; }
+            .section-title { font-size: 1.3rem; }
+            .hero-title { font-size: 2rem; }
         }
     </style>
 </head>
-
 <body>
 
+    <!-- Navigation Header -->
     <nav>
         <a href="#home" class="brand-logo">
             <span class="brand-tag">NEXA</span>
             SRIJAN <span>HALDER</span>
         </a>
-
         <ul class="nav-links">
             <li><a href="#home">01. HOME</a></li>
             <li><a href="#about">02. ABOUT</a></li>
             <li><a href="#skills">03. SKILLS</a></li>
             <li><a href="#gaming">04. GAMING</a></li>
-            <li><a href="#projects" class="nav-project-link">05. PROJECTS</a></li>
-            <li><a href="#socials">06. CONTACT</a></li>
+            <li><a href="#socials">05. CONTACT</a></li>
         </ul>
     </nav>
 
+    <!-- Main Container -->
     <div class="section-container">
-
-        <!-- HERO SECTION -->
+        
+        <!-- Hero Section -->
         <section id="home">
-
+            <!-- Profile Picture Element -->
             <div class="hero-avatar-container">
                 <img src="pfp.jpg" alt="Srijan Halder" class="hero-avatar">
             </div>
 
             <div class="hero-sys-info">// PORTFOLIO.INIT</div>
-
-            <h1 class="hero-title">
-                GAMER & <span>CREATIVE DEVELOPER</span>
-            </h1>
-
+            <h1 class="hero-title">GAMER & <span>CREATIVE DEVELOPER</span></h1>
             <p class="hero-subtitle">
                 Welcome. Casual developer, gamer, and video/photo editor crafting high-impact visual edits, clean interfaces, and digital experiences.
             </p>
 
-            <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <a href="#skills" class="mono-btn">
                     <i class="fas fa-arrow-down"></i> EXPLORE PROFILE
                 </a>
-
                 <a href="#socials" class="mono-btn mono-btn-outline">
                     <i class="fas fa-paper-plane"></i> GET IN TOUCH
                 </a>
-
-                <a href="#projects" class="mono-btn mono-btn-outline">
-                    <i class="fas fa-code-branch"></i> VIEW LIVE PROJECT
-                </a>
             </div>
 
-            <!-- AUDIO PLAYER -->
+            <!-- Local Audio Player Component -->
             <div class="audio-hud">
-
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div style="font-family:var(--font-head); font-size:0.75rem; color:#fff;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-family: var(--font-head); font-size: 0.75rem; color: #fff;">
                         <i class="fas fa-compact-disc fa-spin"></i> CUSTOM_AUDIO_TRACK
                     </div>
-
-                    <span id="audio-status" style="font-size:0.7rem; color:var(--text-dim);">
-                        STANDBY
-                    </span>
+                    <span id="audio-status" style="font-size: 0.7rem; color: var(--text-dim);">STANDBY</span>
                 </div>
 
+                <!-- Audio element pointing to song.mp3 -->
                 <audio id="bg-audio" loop preload="auto">
                     <source src="song.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
@@ -732,17 +389,114 @@
                     <button id="play-btn" class="mono-btn sm">
                         <i class="fas fa-play"></i> START AUDIO
                     </button>
-
-                    <span style="font-size:0.75rem; color:var(--text-dim); font-family:var(--font-head);">
-                        NON-COPYRIGHTED BG AUDIO
-                    </span>
+                    <span style="font-size: 0.75rem; color: var(--text-dim); font-family: var(--font-head);">NON-COPYRIGHTED BG AUDIO</span>
                 </div>
             </div>
+        </section>
 
-            <!-- NEXA MINI RACING GAME -->
-            <section id="nexa-arcade">
+        <!-- About Section -->
+        <section id="about" style="margin-top: 80px;">
+            <h2 class="section-title">02. OVERVIEW</h2>
+            <div class="mono-card">
+                <h3>Srijan Halder [NEXA]</h3>
+                <p>
+                    Passionate gamer and creative creator. Balancing casual code experiments with high-energy video motion graphics, photo styling, and competitive mobile/PC gaming.
+                </p>
+            </div>
+        </section>
 
-                <div class="arcade-heading">
-                    <span class="arcade-label">NEXA // INTERACTIVE</span>
+        <!-- Skills Section -->
+        <section id="skills" style="margin-top: 80px;">
+            <h2 class="section-title">03. SKILLS & TOOLKIT</h2>
+            <div class="grid-layout">
+                <div class="mono-card">
+                    <h3><i class="fas fa-film" style="margin-right: 8px;"></i> Video & Photo Editing</h3>
+                    <p>Producing AMVs, montage edits, color grading, and dynamic motion graphics.</p>
+                    <div class="tag-container">
+                        <span class="mono-tag">After Effects</span>
+                        <span class="mono-tag">Alight Motion</span>
+                        <span class="mono-tag">CapCut</span>
+                    </div>
+                </div>
+                <div class="mono-card">
+                    <h3><i class="fas fa-code" style="margin-right: 8px;"></i> Coding & Dev</h3>
+                    <p>Building casual web projects, interactive UI elements, scripts, and software tools.</p>
+                    <div class="tag-container">
+                        <span class="mono-tag">Python</span>
+                        <span class="mono-tag">HTML5 / CSS3</span>
+                        <span class="mono-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-         
+        <!-- Gaming Section -->
+        <section id="gaming" style="margin-top: 80px;">
+            <h2 class="section-title">04. GAMING ARENA</h2>
+            <div class="grid-layout">
+                <div class="mono-card">
+                    <h3><i class="fas fa-gamepad" style="margin-right: 8px;"></i> Active Titles</h3>
+                    <p>Dominating competitive matches and building virtual worlds.</p>
+                    <div class="tag-container">
+                        <span class="mono-tag">Roblox</span>
+                        <span class="mono-tag">Blockman Go</span>
+                        <span class="mono-tag">Free Fire</span>
+                        <span class="mono-tag">eFootball Mobile</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media / Contact Section -->
+        <section id="socials" style="margin-top: 80px;">
+            <h2 class="section-title">05. DIRECT CONTACT</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 0.9rem;">Reach out directly through social channels or send an email transmission.</p>
+            <div class="social-grid">
+                <!-- Discord direct link with ID -->
+                <a href="https://discord.com/users/1457845956505764003" target="_blank" class="social-card">
+                    <i class="fab fa-discord"></i>
+                    <div>
+                        <div style="font-weight: 500; font-family: var(--font-head); font-size: 0.9rem;">DISCORD</div>
+                        <div style="font-size: 0.75rem; color: var(--text-dim);">@nexa.07</div>
+                    </div>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:haldersrijan90@gmail.com" class="social-card">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <div style="font-weight: 500; font-family: var(--font-head); font-size: 0.9rem;">EMAIL</div>
+                        <div style="font-size: 0.75rem; color: var(--text-dim);">haldersrijan90@...</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Audio Player Play/Pause Script -->
+    <script>
+        const audio = document.getElementById('bg-audio');
+        const playBtn = document.getElementById('play-btn');
+        const statusText = document.getElementById('audio-status');
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i> PAUSE AUDIO';
+                    statusText.innerText = 'PLAYING';
+                    statusText.style.color = '#fff';
+                }).catch(e => {
+                    console.log("Playback error:", e);
+                });
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i> START AUDIO';
+                statusText.innerText = 'PLAYING';
+                statusText.innerText = 'STANDBY';
+                statusText.style.color = 'var(--text-dim)';
+            }
+        });
+    </script>
+</body>
+</html>
